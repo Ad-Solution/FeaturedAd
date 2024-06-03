@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Ads - Prime AdSolution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="featured-ad-container">
+        <h1>Featured Ads</h1>
+        <form id="search-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="main-category">Main Category</label>
+                    <select id="main-category" onchange="updateSubcategories()">
+                        <option value="property">Property</option>
+                        <option value="jobs">Jobs</option>
+                        <option value="vehicles">Vehicles</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="fashion-beauty">Fashion & Beauty</option>
+                        <option value="education">Education</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="marriage-proposal">Marriage Proposal</option>
+                        <option value="home-garden">Home & Garden</option>
+                        <option value="animals">Animals</option>
+                        <option value="services">Services</option>
+                        <option value="products">Products</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sub-category">Subcategory</label>
+                    <select id="sub-category">
+                        <!-- Subcategories will be populated based on the main category -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="min-price">Min Price</label>
+                    <input type="number" id="min-price" placeholder="Minimum Price">
+                </div>
+                <div class="form-group">
+                    <label for="max-price">Max Price</label>
+                    <input type="number" id="max-price" placeholder="Maximum Price">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" placeholder="Enter Location">
+                </div>
+                <div class="form-group search-bar">
+                    <label for="search-keyword">Search</label>
+                    <input type="text" id="search-keyword" placeholder="Enter keyword">
+                </div>
+                <button type="submit">Search</button>
+            </div>
+        </form>
+        <div id="ads-container">
+            <!-- Ads will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        const subcategories = {
+            "property": ["House", "Apartment", "Land", "Commercial"],
+            "jobs": ["Full-time", "Part-time", "Freelance", "Internship"],
+            "vehicles": ["Cars", "Bikes", "Trucks", "Boats"],
+            "electronics": ["Mobile Phones", "Laptops", "TVs", "Cameras"],
+            "fashion-beauty": ["Clothing", "Accessories", "Beauty Products"],
+            "education": ["Courses", "Tutoring", "Workshops"],
+            "furniture": ["Living Room", "Bedroom", "Office", "Outdoor"],
+            "marriage-proposal": ["Bride", "Groom"],
+            "home-garden": ["Furniture", "Plants", "Tools"],
+            "animals": ["Pets", "Livestock", "Pet Supplies"],
+            "services": ["Cleaning", "Moving", "Repairs"],
+            "products": ["Groceries", "Health", "Household"]
+        };
+
+        function updateSubcategories() {
+            const mainCategory = document.getElementById("main-category").value;
+            const subCategorySelect = document.getElementById("sub-category");
+            subCategorySelect.innerHTML = "";
+            subcategories[mainCategory].forEach(subcategory => {
+                const option = document.createElement("option");
+                option.value = subcategory.toLowerCase();
+                option.textContent = subcategory;
+                subCategorySelect.appendChild(option);
+            });
+        }
+
+        document.getElementById("search-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            // Implement search logic here
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            updateSubcategories(); // Initial population of subcategories
+        });
+    </script>
+</body>
+</html>
